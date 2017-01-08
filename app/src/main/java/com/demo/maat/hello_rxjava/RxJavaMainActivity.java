@@ -33,8 +33,6 @@ public class RxJavaMainActivity extends AppCompatActivity {
     }
 
 
-
-
     @OnClick({R.id.btn_scheduler,R.id.btn_operators1, R.id.btn_operators2, R.id.btn_operators3, R.id.btn_operators4, R.id.activity_main})
     public void onClick(View view) {
         switch (view.getId()) {
