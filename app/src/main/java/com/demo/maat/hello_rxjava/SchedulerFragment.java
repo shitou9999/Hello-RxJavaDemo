@@ -124,10 +124,13 @@ public class SchedulerFragment extends Fragment {
         }
     }
 
-
-
+    /**
+     *使用Observable.just(1,2,3)创建被观察对象，观察者输出1，2，3
+     * 创建被观察对象，观察者输出!!!
+     */
     private void doJust() {
         Observable.just(1, 2, 3)
+                //不做处理执行在主线程！！
                 .subscribe(new Subscriber<Integer>() {
                     @Override
                     public void onCompleted() {
@@ -147,11 +150,9 @@ public class SchedulerFragment extends Fragment {
                 });
     }
 
-
-
-
-
-
+    /**
+     * 使用 subscribeOn(Schedulers.io())设置被观察者的线程
+     */
     private void doJustOne() {
         Observable.just(1, 2, 3)
                 .subscribeOn(Schedulers.io())
@@ -174,12 +175,15 @@ public class SchedulerFragment extends Fragment {
                 });
     }
 
-
-
-
+    /**
+     * 使用 subscribeOn(Schedulers.io()) 和 observeOn() 设置被观察者和观察者的线程
+     *  //
+     */
     private void doJustTwo() {
         Observable.just(1, 2, 3)
+                // 指定 subscribe() 所在的线程，也就是上面call()方法调用的线程
                 .subscribeOn(Schedulers.io())
+                //指定 Subscriber 回调方法所在的线程，也就是onCompleted, onError, onNext回调的线程
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Integer>() {
                     @Override
@@ -199,9 +203,6 @@ public class SchedulerFragment extends Fragment {
                     }
                 });
     }
-
-
-
 
 
     private void doJustThree() {
@@ -234,6 +235,11 @@ public class SchedulerFragment extends Fragment {
 
                 });
     }
+
+    /**
+     * subscribeOn( )决定了发射数据在哪个调度器上执行，
+     * observeOn(AndroidSchedulers.mainThread())则指定数据接收发生在UI线程，简直不要太方便。
+     */
     private void doJustFour() {
         Observable.just(1, 2, 3)
                 .subscribeOn(Schedulers.io())
@@ -272,14 +278,6 @@ public class SchedulerFragment extends Fragment {
 
                 });
     }
-
-
-
-
-
-
-
-
 
 
     private void doJustFive() {
