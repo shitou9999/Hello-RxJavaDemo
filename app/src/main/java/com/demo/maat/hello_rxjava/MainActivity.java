@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button mBtnRetrofit;
     @BindView(R.id.btn_rxandroid)
     Button mBtnRxAndroid;
-
+    @BindView(R.id.btn_test) Button btnTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btn_rxjava, R.id.btn_retrofit,R.id.btn_rxandroid})
+    @OnClick({R.id.btn_rxjava, R.id.btn_retrofit,R.id.btn_rxandroid,R.id.btn_test})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_rxjava:
@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_rxandroid:
                 Intent rxandroid=new Intent(MainActivity.this,RxAndroidActivity.class);
                 startActivity(rxandroid);
+                break;
+            case R.id.btn_test:
+                //自己的基础练习
+                Intent btn_test = new Intent(MainActivity.this, RxJavaMainActivity.class);
+                startActivity(btn_test);
                 break;
         }
     }
